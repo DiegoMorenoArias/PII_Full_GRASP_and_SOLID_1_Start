@@ -47,8 +47,11 @@ namespace Full_GRASP_And_SOLID.Library
             totalCost=inputCost+equipmentCost;
             return totalCost;
         }
-        // Principio SRP: La clase tiene la única responsabilidad de calcular los costos.
+        // Principio SRP: No se cumple pues la clase tiene más de una responsabilidad, calcular su costo e imprimir...
         // Principio Expert: La clase tiene toda la información necesaria para calcular el costo, entonces no se asigna otra clase que reciba
         // todas estas informaciones sino simplemente se hace dentro de ella.
+
+        // Para cumplir con el Principio SRP, se podría considerar separar la responsabilidad de imprimir en una
+        // clase diferente (como se hizo en el ejercicio 2), lo que mejoraría la cohesión y la claridad del diseño.
     }
 }
