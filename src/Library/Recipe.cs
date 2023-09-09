@@ -11,7 +11,10 @@ namespace Full_GRASP_And_SOLID.Library
 {
     public class Recipe
     {
-        private ArrayList steps = new ArrayList();
+        public static double inputCost;
+        public static double equipmentCost;
+        public static double totalCost;
+        public ArrayList steps = new ArrayList();
 
         public Product FinalProduct { get; set; }
 
@@ -34,5 +37,18 @@ namespace Full_GRASP_And_SOLID.Library
                     $"usando '{step.Equipment.Description}' durante {step.Time}");
             }
         }
+        public double GetProductionCost()
+        {
+            foreach (Step step in steps)
+            {
+                inputCost+=(step.Input.UnitCost/1000)*step.Quantity;
+                equipmentCost+=step.Equipment.HourlyCost/3600*step.Time;
+            }
+            totalCost=inputCost+equipmentCost;
+            return totalCost;
+        }
+        // Principio SRP: La clase tiene la única responsabilidad de calcular los costos.
+        // Principio Expert: La clase tiene toda la información necesaria para calcular el costo, entonces no se asigna otra clase que reciba
+        // todas estas informaciones sino simplemente se hace dentro de ella.
     }
 }
